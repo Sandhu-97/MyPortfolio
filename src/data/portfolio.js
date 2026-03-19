@@ -1,8 +1,6 @@
 /*
 TODO
-responsive design
-Add my photo
-View Resume button
+Crop the image better
 3d Effects
 */
 

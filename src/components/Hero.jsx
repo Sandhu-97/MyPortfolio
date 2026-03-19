@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { data } from "../data/portfolio"
 import profileImg from "../data/daanveer_formal.jpg"
+import resume from "../data/daanveer_resume.pdf"
 
 export default function Hero() {
   const [displayed, setDisplayed] = useState("")
@@ -152,7 +153,7 @@ export default function Hero() {
 
         <motion.div variants={itemVars} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a href="#projects" style={btnPrimary}>View Projects</a>
-          <a href={`mailto:${data.email}`} style={btnOutline}>Get In Touch</a>
+          <a href={resume} download style={btnOutline}>View CV</a>
         </motion.div>
       </motion.div>
 
