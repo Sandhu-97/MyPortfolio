@@ -3,18 +3,18 @@ import { data } from "../data/portfolio"
 
 export default function Recognition() {
   return (
-    <section id="recognition" style={{ padding: "7rem 4rem", maxWidth: 1200, margin: "0 auto" }}>
+    <section id="recognition" className="site-section">
       <Reveal><p style={sectionLabel}>// Recognition</p></Reveal>
       <Reveal delay={0.1}><h2 style={sectionTitle}>Achievements &<br />Certifications.</h2></Reveal>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.2rem", marginBottom: "3.5rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.2rem", marginBottom: "3.5rem" }}>
         {data.achievements.map((a, i) => (
           <Reveal key={i} delay={i * 0.1}>
             <div
               className="hoverable"
               style={{
                 background: "var(--card)", border: "1px solid var(--border)",
-                borderRadius: 8, padding: "1.5rem 2rem",
+                borderRadius: 8, padding: "clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 2rem)",
                 display: "flex", gap: "1.2rem", alignItems: "flex-start",
                 transition: "all 0.3s",
               }}
@@ -34,7 +34,7 @@ export default function Recognition() {
       <Reveal delay={0.1}>
         <p style={{ ...sectionLabel, marginBottom: "1.2rem" }}>// Certifications</p>
       </Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
         {data.certifications.map((c, i) => (
           <Reveal key={i} delay={i * 0.08}>
             <div

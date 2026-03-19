@@ -6,7 +6,7 @@ const fp = data.featuredProject
 
 export default function FeaturedProject() {
   return (
-    <section style={{ padding: "7rem 4rem", maxWidth: 1200, margin: "0 auto" }}>
+    <section className="site-section">
       <Reveal><p style={sectionLabel}>// Featured Project</p></Reveal>
       <Reveal delay={0.1}>
         <h2 style={sectionTitle}>The one that<br />went live.</h2>
@@ -26,9 +26,9 @@ export default function FeaturedProject() {
             background: "linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3))",
           }} />
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 0 }}>
             {/* Left — info */}
-            <div style={{ padding: "3.5rem", borderRight: "1px solid var(--border)" }}>
+            <div style={{ padding: "clamp(1.25rem, 4vw, 3.5rem)", borderRight: "1px solid var(--border)" }}>
               <span style={{
                 display: "inline-block", fontSize: "0.65rem", letterSpacing: "0.15em",
                 textTransform: "uppercase", color: "var(--accent)",
@@ -37,7 +37,7 @@ export default function FeaturedProject() {
               }}>{fp.tag}</span>
 
               <h3 style={{
-                fontFamily: "Syne, sans-serif", fontSize: "2.2rem", fontWeight: 800,
+                fontFamily: "Syne, sans-serif", fontSize: "clamp(1.6rem, 5vw, 2.2rem)", fontWeight: 800,
                 letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.2rem",
               }}>{fp.title}</h3>
 
@@ -94,7 +94,7 @@ export default function FeaturedProject() {
             </div>
 
             {/* Right — features visual */}
-            <div style={{ padding: "3.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ padding: "clamp(1.25rem, 4vw, 3.5rem)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", color: "var(--accent)", textTransform: "uppercase", marginBottom: "1.5rem" }}>
                 Key Features
               </p>

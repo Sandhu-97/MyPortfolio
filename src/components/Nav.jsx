@@ -1,21 +1,27 @@
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 const links = ["About", "Projects", "Education", "Recognition", "Contact"]
 
 export default function Nav() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 900) {
+        setOpen(false)
+      }
+    }
+    window.addEventListener("resize", onResize)
+    return () => window.removeEventListener("resize", onResize)
+  }, [])
+
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: "1.2rem 4rem",
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        background: "rgba(10,10,15,0.85)",
-        backdropFilter: "blur(20px)",
-        borderBottom: "1px solid var(--border)",
-      }}
+      className="nav-shell"
     >
       <div style={{
         fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: "1.2rem",
@@ -23,7 +29,17 @@ export default function Nav() {
         background: "linear-gradient(135deg, var(--accent), var(--accent2))",
         WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
       }}>DS.dev</div>
-      <ul style={{ display: "flex", gap: "2rem", listStyle: "none" }}>
+
+      <button
+        className="nav-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded={open}
+        onClick={() => setOpen(v => !v)}
+      >
+        {open ? "✕" : "☰"}
+      </button>
+
+      <ul className={`nav-links ${open ? "open" : ""}`}>
         {links.map(l => (
           <li key={l}>
             <a
@@ -33,6 +49,7 @@ export default function Nav() {
                 fontSize: "0.78rem", letterSpacing: "0.08em", textTransform: "uppercase",
                 transition: "color 0.3s",
               }}
+              onClick={() => setOpen(false)}
               onMouseEnter={e => e.target.style.color = "var(--text)"}
               onMouseLeave={e => e.target.style.color = "var(--muted)"}
             >{l}</a>

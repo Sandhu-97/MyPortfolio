@@ -44,8 +44,8 @@ export default function Hero() {
   return (
     <section id="hero" style={{
       minHeight: "100vh", display: "flex", flexDirection: "column",
-      justifyContent: "center", paddingTop: "8rem",
-      paddingLeft: "8rem", paddingRight: "8rem",
+      justifyContent: "center", paddingTop: "clamp(6.5rem, 12vw, 8rem)",
+      paddingLeft: "var(--section-x)", paddingRight: "var(--section-x)",
       position: "relative", maxWidth: "100%", overflow: "hidden",
     }}>
       {/* Grid bg */}
@@ -61,7 +61,7 @@ export default function Hero() {
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
           position: "absolute", right: "10%", top: "50%", transform: "translateY(-50%)",
-          width: 420, height: 420,
+          width: "min(42vw, 420px)", height: "min(42vw, 420px)",
           background: "radial-gradient(circle, rgba(124,92,252,0.2) 0%, rgba(252,92,125,0.08) 50%, transparent 70%)",
           borderRadius: "50%", pointerEvents: "none",
         }}
@@ -69,7 +69,7 @@ export default function Hero() {
 
       <motion.div variants={containerVars} initial="hidden" animate="show" style={{ position: "relative", zIndex: 1 }}>
         <motion.p variants={itemVars} style={{
-          fontSize: "0.75rem", letterSpacing: "0.2em", color: "var(--accent)",
+          fontSize: "clamp(0.65rem, 2.3vw, 0.75rem)", letterSpacing: "0.2em", color: "var(--accent)",
           textTransform: "uppercase", marginBottom: "1.5rem",
         }}>
           // B.Tech CSE · LPU · GPA 8.97 · Open to Internships
@@ -77,9 +77,12 @@ export default function Hero() {
 
         <motion.h1 variants={itemVars} style={{
           fontFamily: "Syne, sans-serif",
-          fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
+          fontSize: "clamp(2.1rem, 11vw, 7.5rem)",
           fontWeight: 800, lineHeight: 0.95,
           letterSpacing: "-0.04em", marginBottom: "2rem",
+          maxWidth: "100%",
+          overflowWrap: "anywhere",
+          wordBreak: "break-word",
         }}>
           {data.name}<br />
           <span style={{
@@ -92,7 +95,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p variants={itemVars} style={{
-          fontSize: "1rem", color: "var(--muted)", maxWidth: 520,
+          fontSize: "clamp(0.9rem, 2.7vw, 1rem)", color: "var(--muted)", maxWidth: 620,
           lineHeight: 1.8, marginBottom: "1.5rem",
         }}>
           Building production-grade systems — from ML-powered APIs to mobile apps serving real farmers.
@@ -112,7 +115,7 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        <motion.div variants={itemVars} style={{ display: "flex", gap: "1rem" }}>
+        <motion.div variants={itemVars} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a href="#projects" style={btnPrimary}>View Projects</a>
           <a href={`mailto:${data.email}`} style={btnOutline}>Get In Touch</a>
         </motion.div>

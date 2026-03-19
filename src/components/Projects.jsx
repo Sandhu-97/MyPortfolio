@@ -4,10 +4,10 @@ import { data } from "../data/portfolio"
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding: "7rem 4rem", maxWidth: 1200, margin: "0 auto" }}>
+    <section id="projects" className="site-section">
       <Reveal><p style={sectionLabel}>// Other Projects</p></Reveal>
       <Reveal delay={0.1}><h2 style={sectionTitle}>More things<br />I've shipped.</h2></Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "1.5rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
         {data.projects.map((p, i) => (
           <Reveal key={i} delay={i * 0.1}>
             <ProjectCard project={p} />
@@ -33,7 +33,7 @@ function ProjectCard({ project: p }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         background: "var(--card)", border: `1px solid ${hovered ? "rgba(124,92,252,0.25)" : "var(--border)"}`,
-        borderRadius: 10, padding: "2rem",
+        borderRadius: 10, padding: "clamp(1.1rem, 3vw, 2rem)",
         transform: hovered ? "translateY(-6px)" : "none",
         transition: "all 0.4s ease",
         display: "flex", flexDirection: "column",

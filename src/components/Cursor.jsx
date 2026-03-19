@@ -3,18 +3,33 @@ import { motion } from "framer-motion"
 
 export default function Cursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 })
+  const posRef = useRef({ x: 0, y: 0 })
   const [hovered, setHovered] = useState(false)
+  const [enabled, setEnabled] = useState(true)
   const ringPos = useRef({ x: 0, y: 0 })
   const [ringState, setRingState] = useState({ x: 0, y: 0 })
   const rafRef = useRef()
 
   useEffect(() => {
-    const move = (e) => setPos({ x: e.clientX, y: e.clientY })
+    const media = window.matchMedia("(any-pointer: coarse)")
+    const applyEnabled = () => setEnabled(!media.matches)
+    applyEnabled()
+    media.addEventListener("change", applyEnabled)
+
+    if (media.matches) {
+      return () => media.removeEventListener("change", applyEnabled)
+    }
+
+    const move = (e) => {
+      const next = { x: e.clientX, y: e.clientY }
+      posRef.current = next
+      setPos(next)
+    }
     window.addEventListener("mousemove", move)
 
     const animate = () => {
-      ringPos.current.x += (pos.x - ringPos.current.x) * 0.12
-      ringPos.current.y += (pos.y - ringPos.current.y) * 0.12
+      ringPos.current.x += (posRef.current.x - ringPos.current.x) * 0.12
+      ringPos.current.y += (posRef.current.y - ringPos.current.y) * 0.12
       setRingState({ x: ringPos.current.x, y: ringPos.current.y })
       rafRef.current = requestAnimationFrame(animate)
     }
@@ -22,7 +37,8 @@ export default function Cursor() {
 
     const onEnter = () => setHovered(true)
     const onLeave = () => setHovered(false)
-    document.querySelectorAll("a, button, .hoverable").forEach(el => {
+    const hoverElements = document.querySelectorAll("a, button, .hoverable")
+    hoverElements.forEach(el => {
       el.addEventListener("mouseenter", onEnter)
       el.addEventListener("mouseleave", onLeave)
     })
@@ -30,8 +46,17 @@ export default function Cursor() {
     return () => {
       window.removeEventListener("mousemove", move)
       cancelAnimationFrame(rafRef.current)
+      hoverElements.forEach(el => {
+        el.removeEventListener("mouseenter", onEnter)
+        el.removeEventListener("mouseleave", onLeave)
+      })
+      media.removeEventListener("change", applyEnabled)
     }
-  }, [pos.x, pos.y])
+  }, [])
+
+  if (!enabled) {
+    return null
+  }
 
   return (
     <>

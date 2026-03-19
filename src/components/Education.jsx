@@ -21,7 +21,7 @@ export default function Education() {
   const minGpa = Math.min(...edu.semesters.map(s => s.gpa))
 
   return (
-    <section id="education" style={{ padding: "7rem 4rem", maxWidth: 1200, margin: "0 auto" }}>
+    <section id="education" className="site-section">
       <Reveal><p style={sectionLabel}>// Education</p></Reveal>
       <Reveal delay={0.1}><h2 style={sectionTitle}>Academic<br />Journey.</h2></Reveal>
 
@@ -29,7 +29,7 @@ export default function Education() {
       <Reveal delay={0.2}>
         <div style={{
           background: "var(--card)", border: "1px solid var(--border)",
-          borderRadius: 12, padding: "2rem 2.5rem",
+          borderRadius: 12, padding: "clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2.5rem)",
           display: "flex", justifyContent: "space-between", alignItems: "center",
           marginBottom: "3rem", flexWrap: "wrap", gap: "1.5rem",
         }}>
@@ -58,9 +58,9 @@ export default function Education() {
       <Reveal delay={0.3}>
         <div ref={ref} style={{
           background: "var(--card)", border: "1px solid var(--border)",
-          borderRadius: 12, padding: "2.5rem",
+          borderRadius: 12, padding: "clamp(1rem, 4vw, 2.5rem)",
         }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem", gap: "0.8rem", flexWrap: "wrap" }}>
             <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", color: "var(--accent)", textTransform: "uppercase" }}>
               Semester-wise GPA
             </p>
@@ -71,8 +71,9 @@ export default function Education() {
           </div>
 
           {/* Bar chart */}
-          <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-end", height: 200, marginBottom: "1rem" }}>
-            {edu.semesters.map((s, i) => {
+          <div style={{ overflowX: "auto", paddingBottom: "0.35rem" }}>
+            <div style={{ display: "flex", gap: "1rem", alignItems: "flex-end", height: 200, marginBottom: "1rem", minWidth: 520 }}>
+              {edu.semesters.map((s, i) => {
               const height = pct(s.gpa)
               const isPeak = s.gpa === maxGpa
               const isLow = s.gpa === minGpa
@@ -122,6 +123,7 @@ export default function Education() {
                 </div>
               )
             })}
+            </div>
           </div>
 
           {/* Y-axis labels */}

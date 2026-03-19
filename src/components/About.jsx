@@ -3,8 +3,8 @@ import { data } from "../data/portfolio"
 
 export default function About() {
   return (
-    <section id="about" style={{ padding: "7rem 4rem", maxWidth: 1200, margin: "0 auto" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
+    <section id="about" className="site-section">
+      <div className="split-2" style={{ alignItems: "start" }}>
         <div>
           <Reveal><p style={sectionLabel}>// About Me</p></Reveal>
           <Reveal delay={0.1}>
@@ -21,7 +21,7 @@ export default function About() {
             </p>
           </Reveal>
           <Reveal delay={0.4}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "2rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem", marginTop: "2rem" }}>
               {data.skills.map((group, i) => (
                 <div key={i}>
                   <p style={{ fontSize: "0.65rem", letterSpacing: "0.18em", color: "var(--accent)", textTransform: "uppercase", marginBottom: "0.8rem" }}>
@@ -38,7 +38,7 @@ export default function About() {
           </Reveal>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1.5rem" }}>
           {data.stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.1}>
               <StatCard number={s.number} label={s.label} />
@@ -56,7 +56,7 @@ function StatCard({ number, label }) {
       className="hoverable"
       style={{
         background: "var(--card)", border: "1px solid var(--border)",
-        padding: "2rem", borderRadius: 8,
+        padding: "clamp(1.25rem, 3vw, 2rem)", borderRadius: 8,
         transition: "transform 0.3s, border-color 0.3s",
         position: "relative", overflow: "hidden",
       }}
@@ -69,7 +69,7 @@ function StatCard({ number, label }) {
         transform: "scaleX(0)", transformOrigin: "left", transition: "transform 0.3s",
       }} />
       <div style={{
-        fontFamily: "Syne, sans-serif", fontSize: "2.8rem", fontWeight: 800,
+        fontFamily: "Syne, sans-serif", fontSize: "clamp(2rem, 8vw, 2.8rem)", fontWeight: 800,
         background: "linear-gradient(135deg, var(--accent), var(--accent2))",
         WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
         lineHeight: 1, marginBottom: "0.5rem",

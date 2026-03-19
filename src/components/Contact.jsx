@@ -11,7 +11,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <section id="contact" style={{ padding: "7rem 4rem", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+    <section id="contact" style={{ padding: "var(--section-y) var(--section-x)", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
       <Reveal><p style={sectionLabel}>// Contact</p></Reveal>
       <Reveal delay={0.1}>
         <h2 style={{
@@ -34,7 +34,7 @@ export default function Contact() {
               className="hoverable"
               style={{
                 display: "flex", alignItems: "center", gap: "0.5rem",
-                padding: "0.6rem 1.2rem",
+                padding: "0.6rem 1rem",
                 background: "var(--surface)", border: "1px solid var(--border)",
                 borderRadius: 4, fontSize: "0.78rem", color: "var(--muted)",
                 textDecoration: "none", transition: "all 0.3s",
@@ -51,7 +51,7 @@ export default function Contact() {
           className="hoverable"
           style={{
             display: "inline-block",
-            padding: "0.9rem 2.2rem", background: "var(--accent)", color: "#fff",
+            padding: "0.9rem clamp(1.2rem, 6vw, 2.2rem)", background: "var(--accent)", color: "#fff",
             borderRadius: 4, fontFamily: "DM Mono, monospace",
             fontSize: "0.85rem", letterSpacing: "0.05em", textDecoration: "none",
             transition: "all 0.3s",

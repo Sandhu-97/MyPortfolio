@@ -33,8 +33,10 @@ export default function App() {
       <Contact />
       <footer style={{
         borderTop: "1px solid var(--border)",
-        padding: "2rem 8rem",
+        padding: "clamp(1.2rem, 4vw, 2rem) var(--section-x)",
         display: "flex", justifyContent: "space-between", alignItems: "center",
+        flexWrap: "wrap",
+        gap: "0.6rem 1.2rem",
         color: "var(--muted)", fontSize: "0.75rem",
       }}>
         <span>© 2025 {data.name}</span>
