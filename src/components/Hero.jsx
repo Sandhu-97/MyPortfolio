@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { data } from "../data/portfolio"
+import profileImg from "../data/daanveer_formal.jpg"
 
 export default function Hero() {
   const [displayed, setDisplayed] = useState("")
@@ -75,25 +76,59 @@ export default function Hero() {
           // B.Tech CSE · LPU · GPA 8.97 · Open to Internships
         </motion.p>
 
-        <motion.h1 variants={itemVars} style={{
-          fontFamily: "Syne, sans-serif",
-          fontSize: "clamp(2.1rem, 11vw, 7.5rem)",
-          fontWeight: 800, lineHeight: 0.95,
-          letterSpacing: "-0.04em", marginBottom: "2rem",
-          maxWidth: "100%",
-          overflowWrap: "anywhere",
-          wordBreak: "break-word",
-        }}>
-          {data.name}<br />
-          <span style={{
-            background: "linear-gradient(135deg, var(--accent), var(--accent2))",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-          }}>
-            {displayed}
-            <span style={{ color: "var(--accent)", WebkitTextFillColor: "var(--accent)", animation: "blink 1s step-end infinite" }}>|</span>
-          </span>
-        </motion.h1>
-
+        <div style={{ display: "flex", gap: "clamp(1.5rem, 5vw, 3rem)", alignItems: "flex-start", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: "min(100%, 300px)" }}>
+            <motion.h1 variants={itemVars} style={{
+              fontFamily: "Syne, sans-serif",
+              fontSize: "clamp(2.1rem, 11vw, 7.5rem)",
+              fontWeight: 800, lineHeight: 0.95,
+              letterSpacing: "-0.04em", marginBottom: "2rem",
+              maxWidth: "100%",
+              overflowWrap: "anywhere",
+              wordBreak: "break-word",
+            }}>
+              {data.name}<br />
+              <span style={{
+                background: "linear-gradient(135deg, var(--accent), var(--accent2))",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              }}>
+                {displayed}
+                <span style={{ color: "var(--accent)", WebkitTextFillColor: "var(--accent)", animation: "blink 1s step-end infinite" }}>|</span>
+              </span>
+            </motion.h1>
+          </div>
+          <motion.div
+            variants={itemVars}
+            style={{
+              flex: 1,
+              minWidth: "min(100%, 280px)",
+              maxWidth: "280px",
+            }}
+          >
+            <div style={{
+              aspectRatio: "1",
+              width: "100%",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, rgba(124,92,252,0.1), rgba(252,92,125,0.05))",
+              border: "2px solid var(--border)",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backdropFilter: "blur(10px)",
+            }}>
+              <img
+                src={profileImg}
+                alt={data.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
         <motion.p variants={itemVars} style={{
           fontSize: "clamp(0.9rem, 2.7vw, 1rem)", color: "var(--muted)", maxWidth: 620,
           lineHeight: 1.8, marginBottom: "1.5rem",
