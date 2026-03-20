@@ -1,6 +1,5 @@
 /*
 TODO
-Crop the image better
 3d Effects
 */
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { data } from "../data/portfolio"
-import profileImg from "../data/daanveer_formal.jpg"
+import profileImg from "../data/daanveer_formal.png"
 import resume from "../data/daanveer_resume.pdf"
 
 export default function Hero() {
